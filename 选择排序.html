@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        window.onload = function () {
+            //每次循环，只判断最小项的小标，并与起始位置互换
+            var arr = [];
+
+            while (arr.length < 100000) {
+                arr.push(Math.floor(Math.random() * 100000))
+            }
+
+
+
+            function selectSort(arr) {
+
+                for (var i = 0; i < arr.length - 1; i++) {
+                    var minIndex = i;
+                    for (var j = i + 1; j < arr.length - 1; j++) {
+                        if (arr[minIndex] > arr[j]) {
+                            minIndex = j;
+                        }
+                    }
+                    if (i != minIndex) {
+                        arr[minIndex] = arr[minIndex] ^ arr[i]
+                        arr[i] = arr[minIndex] ^ arr[i]
+                        arr[minIndex] = arr[minIndex] ^ arr[i]
+                    }
+                }
+
+                return arr;
+            }
+            console.time();
+            selectSort(arr);
+            console.log(arr);
+            console.timeEnd();
+        }
+    </script>
+</body>
+
+</html>

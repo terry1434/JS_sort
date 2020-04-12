@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #el {
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine;
+            transition:all 1s linear;
+            transform: translate3d(50px, 50px, 50px);
+        }
+        .move{
+            transform: translate3d(150px, 150px, 150px);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="el"></div>
+    <script>
+        window.onload = function () {
+            let el = document.getElementById('el');
+   
+            window.requestAnimationFrame(function () {
+                el.classList.add('move')
+            })
+            setTimeout(function () {
+                console.log("A")
+            }, 0);
+            new Promise(resolve => {
+                for (var i = 0; i < 5; i++) {
+                    console.log(i)
+                }
+                resolve();
+            }).then(() => {
+                console.log('B')
+            })
+
+            //0 1 2 3 4 B C A
+        }
+    </script>
+</body>
+
+</html>

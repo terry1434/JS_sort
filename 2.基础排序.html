@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        window.onload = function () {
+
+            let arr = [];
+            while (arr.length < 100) {
+                arr.push(Math.floor(Math.random() * 100));
+            }
+
+            //*******************
+            //******快速排序******
+            //*******************
+            //1.找出中间项目
+            //2.其他项目，与其比较大小
+            //3.递归步骤1-2，直到只有一项或者没有为止
+            function quicksort(param) {
+
+                if (param.length <= 1) {
+                    return param;
+                }
+                let middle = param.splice(Math.floor(param.length / 2), 1)[0];
+                let left = [];
+                let right = [];
+                for (let i = 0; i < param.length; i++) {
+                    param[i] <= middle ? left.push(param[i]) : right.push(param[i]);
+                }
+
+                return quicksort(left).concat(middle, quicksort(right));
+            }
+            console.time('quickSort');
+            console.log(quicksort(arr.slice(0)));
+            console.timeEnd('quickSort');
+
+            //*******************
+            //******选择排序******
+            //*******************
+            //每次循环，只判断最小项的下标，并与起始位置互换
+            function selectSort(arr) {
+                console.time('selectSort');
+                for (var i = 0; i < arr.length - 1; i++) {
+                    var minIndex = i;
+                    for (var j = i + 1; j < arr.length - 1; j++) {
+                        if (arr[minIndex] > arr[j]) {
+                            minIndex = j;
+                        }
+                    }
+                    if (i != minIndex) {
+                        arr[minIndex] = arr[minIndex] ^ arr[i]
+                        arr[i] = arr[minIndex] ^ arr[i]
+                        arr[minIndex] = arr[minIndex] ^ arr[i]
+                    }
+                }
+                console.timeEnd('selectSort');
+                return arr;
+            }
+
+            console.log(selectSort(arr.slice(0)));
+
+
+            //*******************
+            //******冒泡排序******
+            //*******************
+            //当前项与后一项比较，如果当前项大于后一项，则交换位置
+            function bubbleSort(param) {
+                console.time('bubbleSort');
+                for (let i = 0; i < param.length; i++) {
+                    for (let j = i + 1; j < param.length; j++) {
+                        if (param[i] > param[j]) {
+                            param[i] = param[i] ^ param[j];
+                            param[j] = param[i] ^ param[j];
+                            param[i] = param[i] ^ param[j];
+                        }
+                    }
+                }
+                console.timeEnd('bubbleSort');
+                return param;
+            }
+
+            console.log(bubbleSort(arr.slice(0)));
+
+
+        }
+    </script>
+</body>
+
+</html>

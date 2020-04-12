@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        window.onload = function () {
+            var arr = [];
+            while (arr.length < 1000) {
+                arr.push(Math.floor(Math.random() * 1000))
+            }
+            function quickSort(param) {
+
+                if (param.length <= 1) {
+                    return param;
+                }
+                let middle = param.splice(Math.floor(param.length / 2), 1);
+                let right = [];
+                let left = [];
+                for (let i = 0; i < param.length; i++) {
+                    middle > param[i] ? left.push(param[i]) : right.push(param[i])
+                }
+                return quickSort(left).concat(middle, quickSort(right))
+            }
+            console.log(quickSort(arr));
+        }
+    </script>
+</body>
+
+</html>

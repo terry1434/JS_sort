@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        window.onload = function () {
+            //已知有字符串foo='get-element-by-id',写一个function将其转化为"getElementById"
+            const str = "get-element-by-id";
+            function transfer(str) {
+                let reg = /\-([a-z])/g;
+                return str.replace(/\-([a-z])/g, function ($1,$2) {
+                    return $2.toUpperCase();
+                })
+            }
+            console.log(transfer(str));
+        }
+    </script>
+</body>
+
+</html>
